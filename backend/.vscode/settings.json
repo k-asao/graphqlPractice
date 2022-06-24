@@ -1,0 +1,14 @@
+{
+  "window.title": "webapp-template/backend${separator}${activeEditorShort}",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tslint.packageManager": "yarn",
+  "tslint.jsEnable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "search.exclude": {
+    "dist/**/*": true,
+    "node_modules/**/*": true
+  }
+}

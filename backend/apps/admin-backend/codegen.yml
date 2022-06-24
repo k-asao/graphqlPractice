@@ -1,0 +1,14 @@
+schema: src/schema.gql
+documents: config/graphql/**/*.gql
+generates:
+  src/graphql-types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-generic-sdk
+    config:
+      skipTypename: true
+      avoidOptionals: false
+    hooks:
+      afterOneFileWrite:
+        - prettier --write src/graphql-types.ts

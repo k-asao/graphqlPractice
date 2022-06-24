@@ -1,0 +1,75 @@
+version: '2'
+services:
+  line-backend:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+    volumes:
+      - ./backend:/usr/src/app:cached
+      - node_modules:/usr/src/app/node_modules
+    depends_on:
+      - postgres
+      - localstack
+    ports:
+      - '3003:3003'
+    command: bash -c "yarn dev:initialize && yarn dev:line"
+  admin-backend:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+    volumes:
+      - ./backend:/usr/src/app:cached
+      - node_modules:/usr/src/app/node_modules
+    depends_on:
+      - postgres
+      - localstack
+    ports:
+      - '3001:3001'
+    command: bash -c "yarn dev:initialize && yarn dev:admin"
+  postgres:
+    # M1 Macで11系のPostgresが動作しないため13を使用するが
+    # 11と13の互換性の違いには要注意
+    image: postgres:13.3
+    environment:
+      TZ: Asia/Tokyo
+      PGTZ: Asia/Tokyo
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  redis:
+    image: redis:6.2
+    volumes:
+      - redis-data:/data
+    ports:
+      - '6379:6379'
+  localstack:
+    image: localstack/localstack
+    network_mode: bridge
+    ports:
+      - '4566:4566'
+      - '4571:4571'
+      - '8081:8081'
+    environment:
+      - SERVICES=s3,ses
+      - DEBUG=1
+      # - DATA_DIR=${DATA_DIR- }
+      - PORT_WEB_UI=8081
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - '/tmp/localstack:/tmp/localstack'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  node_modules:
+    driver: local

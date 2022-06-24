@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+cd $(dirname $0)/..
+
+# マイグレーション
+# yarn ts-node -r tsconfig-paths/register node_modules/.bin/typeorm migration:run
+
+# 起動
+node dist/apps/admin-backend/src/main.js

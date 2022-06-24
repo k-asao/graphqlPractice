@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# ワークディレクトリをプロジェクトルートに変更
+cd $(dirname $0)/..
+
+# 環境変数をexport
+# export $(egrep -v '^#' .env.localhost | xargs)
+
+cp ../backend/apps/admin-backend/src/schema.gql schema.graphql
+
+# 型生成
+yarn graphql-codegen --config codegen.yml

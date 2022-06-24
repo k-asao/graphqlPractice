@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Sample {
+  id: String!
+}
+
+type User {
+  id: String!
+  name: String!
+  age: Float!
+}
+
+type Query {
+  users: [User!]!
+  sample: Sample!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+  createSample(input: CreateSampleInput!): Sample!
+}
+
+input CreateUserInput {
+  name: String!
+  age: Float!
+}
+
+input CreateSampleInput {
+  id: String!
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    // 型の初期化チェックを無効化
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    },
+    "types": ["@types/node", "@nuxt/types", "@nuxt/vue-app"]
+  },
+  "exclude": ["node_modules", ".nuxt", "dist"]
+}

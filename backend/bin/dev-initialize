@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+cd $(dirname $0)/..
+
+if [[ ! -z $CLEAN ]]; then
+  PGPASSWORD="password" psql -h postgres -U postgres -c "drop database app_local";
+  PGPASSWORD="password" psql -h postgres -U postgres -c "drop database app_test";
+fi
+
+# 開発 DB を作成。
+# PostgreSQLではif not exists 構文がサポートされていないためエラーを無視する
+PGPASSWORD="password" psql -h postgres -U postgres -c 'create database "app_local"' 2>/dev/null || :
+PGPASSWORD="password" psql -h postgres -U postgres -c 'create database "app_test"' 2>/dev/null || :
+
+# 依存ライブラリのインストール
+yarn
+
+# マイグレーションを実行
+yarn db:migrate:run:local
+yarn db:migrate:run:test
+
+# シードデータの登録
+yarn db:seeds:local
+# yarn db:seeds:test

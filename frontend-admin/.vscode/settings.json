@@ -1,0 +1,14 @@
+{
+  "window.title": "practice/frontend-admin${separator}${activeEditorShort}",
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

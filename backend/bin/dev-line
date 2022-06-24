@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd $(dirname $0)/..
+
+# ビルドディレクトリを削除
+rm -rf dist
+
+# アセットをコピー
+# yarn cpx "**/*.mu" dist/apps/admin-backend
+
+# LIFFバックエンドを起動
+DOTENV_CONFIG_PATH=.env.localhost PORT=3003 node -r dotenv/config node_modules/.bin/nest start line-backend --debug --watch | yarn pino-pretty

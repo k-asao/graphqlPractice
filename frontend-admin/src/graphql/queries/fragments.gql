@@ -1,0 +1,5 @@
+fragment UsersAttribute on User {
+  id
+  name
+  age
+}

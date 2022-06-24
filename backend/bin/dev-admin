@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+cd $(dirname $0)/..
+
+# ビルドディレクトリを削除
+rm -rf dist
+
+# アセットをコピー
+yarn cpx "**/*.mu" dist/apps/admin-backend
+
+# 管理画面APIを起動
+DOTENV_CONFIG_PATH=.env.localhost PORT=3001 node -r dotenv/config node_modules/.bin/nest start admin-backend --debug --watch | yarn pino-pretty

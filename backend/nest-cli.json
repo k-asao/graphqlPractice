@@ -1,0 +1,62 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/backend/src",
+  "monorepo": true,
+  "root": "apps/backend",
+  "projects": {
+    "line-backend": {
+      "type": "application",
+      "root": "apps/line-backend",
+      "entryFile": "main",
+      "sourceRoot": "apps/line-backend/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/line-backend/tsconfig.app.json"
+      }
+    },
+    "admin-backend": {
+      "type": "application",
+      "root": "apps/admin-backend",
+      "entryFile": "main",
+      "sourceRoot": "apps/admin-backend/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/admin-backend/tsconfig.app.json"
+      }
+    },
+    "domain": {
+      "type": "library",
+      "root": "libs/domain",
+      "entryFile": "index",
+      "sourceRoot": "libs/domain/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/domain/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "type": "library",
+      "root": "libs/utils",
+      "entryFile": "index",
+      "sourceRoot": "libs/utils/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/utils/tsconfig.lib.json"
+      }
+    },
+    "enums": {
+      "type": "library",
+      "root": "libs/enums",
+      "entryFile": "index",
+      "sourceRoot": "libs/enums/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/enums/tsconfig.lib.json"
+      }
+    },
+    "operation": {
+      "type": "application",
+      "root": "apps/operation",
+      "entryFile": "main",
+      "sourceRoot": "apps/operation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/operation/tsconfig.app.json"
+      }
+    }
+  }
+}

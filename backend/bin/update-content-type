@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for KEY in $(aws s3api list-objects \
+  --bucket $BUCKETNAME \
+  --query "Contents[].[Key]" \
+  --output text | grep -E "public/disaster-prevention-tips/.*/[0-9]+")
+do
+  aws s3api copy-object \
+    --bucket $BUCKETNAME \
+    --copy-source $BUCKETNAME/$KEY \
+    --key $KEY \
+    --metadata-directive "REPLACE" \
+    --content-type "image/png"
+done

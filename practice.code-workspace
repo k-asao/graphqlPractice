@@ -1,0 +1,34 @@
+{
+  "folders": [
+    {
+      "path": "backend"
+    },
+    {
+      "path": "frontend-admin"
+    }
+  ],
+  "settings": {
+    "sqltools.connections": [{
+        "previewLimit": 50,
+        "server": "postgres",
+        "port": 5432,
+        "driver": "PostgreSQL",
+        "name": "app_test",
+        "database": "app_test",
+        "username": "postgres",
+        "password": "password"
+      },
+      {
+        "previewLimit": 50,
+        "server": "postgres",
+        "port": 5432,
+        "driver": "PostgreSQL",
+        "name": "app_local",
+        "database": "app_local",
+        "username": "postgres",
+        "password": "password"
+      }
+    ],
+    "editor.tabSize": 2
+  }
+}
